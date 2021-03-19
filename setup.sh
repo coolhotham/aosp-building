@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export CHAT_ID=-1001165568594
-export BOT_TOKEN=1769103266:AAHFb2yG3S3I5vspEQFtuTP-SvM1E0bjOfc
 function tg_sendText() {
 curl -s "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
 -d "parse_mode=html" \
