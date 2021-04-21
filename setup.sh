@@ -92,14 +92,14 @@ tg_sendText "Done... Lunching"
 
 # Normal build steps
 export SELINUX_IGNORE_NEVERALLOWS=true
-source build/envsetup.sh
+. build/env*
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
 ccache -M 6G
 ccache -o compression=true
 ccache -z
-lunch aosp_lavender-userdebug
+lunch palladium_lavender-userdebug
 
 tg_sendText "Building"
 #make SystemUI
@@ -108,9 +108,9 @@ tg_sendText "Building"
 #make test-api-stubs-docs
 #make hiddenapi-lists-docs
 #tg_sendText "metalava done.. Building"
-export PATH="$HOME/bin:$PATH"
+#export PATH="$HOME/bin:$PATH"
 sleep 80m && cd /tmp && tg_sendText "ccache compress" && time com ccache 1 && tg_sendText "ccache upload" && time rclone copy cr_ccache.tar.gz hk:pal/ -P && cd /tmp/rom &
-m aex -j$(nproc --all) || m aex -j12
+mka palladium -j$(nproc --all) || mka palladium -j12
 
 
 tg_sendText "Build zip"
