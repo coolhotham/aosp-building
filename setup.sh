@@ -40,7 +40,7 @@ cd /tmp/rom
 repo init -u https://github.com/Palladium-OS/platform_manifest.git -b 11 -g default,-device,-mips,-darwin,-notdefault
 
 
-tg_sendText "Downloading sources"
+tg_sendText "Cool_Downloading sources"
 
 # Sync source with -q, no need unnecessary messages, you can remove -q if want! try with -j30 first, if fails, it will try again with -j8
 
@@ -48,7 +48,7 @@ repo sync -c -q --force-sync --optimized-fetch --no-tags --no-clone-bundle --pru
 rm -rf .repo
 
 # Sync device tree and stuffs
-tg_sendText "Repo done... Cloning Device stuff"
+tg_sendText "Cool_Repo done... Cloning Device stuff"
 git clone -b pal https://github.com/makaramhk/device_xiaomeme_lavender.git device/xiaomi/lavender
 git clone -b flos-backup https://github.com/makaramhk/vendor_xiaomeme_lavender.git vendor/xiaomi/lavender
 git clone --depth=1 -b oldcam-hmp https://github.com/stormbreaker-project/kernel_xiaomi_lavender.git kernel/xiaomi/lavender
@@ -73,7 +73,7 @@ git clone -b lineage-18.1 https://github.com/LineageOS/android_external_ant-wire
 rm -rf packages/resources/devicesettings
 git clone -b lineage-18.1 https://github.com/LineageOS/android_packages_resources_devicesettings packages/resources/devicesettings
 
-tg_sendText "Done... Lunching"
+tg_sendText "Cool_Done... Lunching"
 
 
 #prebuilts/jdk/jdk9/linux-x86/bin/java -XX:+PrintFlagsFinal -version  | grep "MaxHeapSize" 
@@ -82,13 +82,13 @@ tg_sendText "Done... Lunching"
 
 
 
-#tg_sendText "ccache downlading"
+#tg_sendText "Cool_ccache downlading"
 #cd /tmp
 #time rclone copy hk:pal/cr_ccache.tar.gz ./
 #tar xf cr_ccache.tar.gz
 #find cr_ccache.tar.gz -delete
 #cd /tmp/rom
-#tg_sendText "ccache done"
+#tg_sendText "Cool_ccache done"
 
 # Normal build steps
 export SELINUX_IGNORE_NEVERALLOWS=true
@@ -101,29 +101,29 @@ ccache -o compression=true
 ccache -z
 lunch palladium_lavender-userdebug
 
-tg_sendText "Building"
+tg_sendText "Cool_Building"
 #make SystemUI
 #make api-stubs-docs
 #make system-api-stubs-docs
 #make test-api-stubs-docs
 #make hiddenapi-lists-docs
-#tg_sendText "metalava done.. Building"
+#tg_sendText "Cool_metalava done.. Building"
 #export PATH="$HOME/bin:$PATH"
-sleep 80m && cd /tmp && tg_sendText "ccache compress" && time com ccache 1 && tg_sendText "ccache upload" && time rclone copy cr_ccache.tar.gz hk:pal/ -P && cd /tmp/rom &
+sleep 80m && cd /tmp && tg_sendText "Cool_ccache compress" && time com ccache 1 && tg_sendText "Cool_ccache upload" && time rclone copy cr_ccache.tar.gz hk:pal/ -P && cd /tmp/rom &
 mka palladium -j$(nproc --all) || mka palladium -j12
 
 
-tg_sendText "Build zip"
+tg_sendText "Cool_Build zip"
 cd /tmp/rom
 rclone copy out/target/product/lavender/*.zip hk:rom/
 up out/target/product/lavender/*.zip
-tg_sendFile "download.txt"
+tg_sendFile "Cool_download.txt"
 #tg_sendFile "out/target/product/lavender/*.zip"
-tg_sendText "json"
+tg_sendText "Cool_json"
 up out/target/product/lavender/*.json
-tg_sendFile "download.txt"
+tg_sendFile "Cool_download.txt"
 
-#tg_sendText "ccache upload"
+#tg_sendText "Cool_ccache upload"
 #cd /tmp
 #time com ccache 3 # Compression level 1, its enough
 #up cr_ccache.tar.gz
