@@ -82,13 +82,13 @@ tg_sendText "Cool_Done... Lunching"
 
 
 
-#tg_sendText "Cool_ccache downlading"
-#cd /tmp
-#time rclone copy hk:pal/cr_ccache.tar.gz ./
-#tar xf cr_ccache.tar.gz
-#find cr_ccache.tar.gz -delete
-#cd /tmp/rom
-#tg_sendText "Cool_ccache done"
+tg_sendText "Cool_ccache downlading"
+cd /tmp
+time rclone copy hk:pal/cr_ccache.tar.gz ./
+tar xf cr_ccache.tar.gz
+find cr_ccache.tar.gz -delete
+cd /tmp/rom
+tg_sendText "Cool_ccache done"
 
 # Normal build steps
 export SELINUX_IGNORE_NEVERALLOWS=true
@@ -109,7 +109,7 @@ tg_sendText "Cool_Building"
 #make hiddenapi-lists-docs
 #tg_sendText "Cool_metalava done.. Building"
 #export PATH="$HOME/bin:$PATH"
-sleep 80m && cd /tmp && tg_sendText "Cool_ccache compress" && time com ccache 1 && tg_sendText "Cool_ccache upload" && time rclone copy cr_ccache.tar.gz hk:pal/ -P && cd /tmp/rom &
+sleep 70m && cd /tmp && tg_sendText "Cool_ccache compress" && time com ccache 1 && tg_sendText "Cool_ccache upload" && time rclone copy cr_ccache.tar.gz hk:pal/ -P && cd /tmp/rom &
 mka palladium -j$(nproc --all) || mka palladium -j12
 
 
