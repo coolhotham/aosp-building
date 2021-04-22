@@ -115,7 +115,7 @@ mka palladium -j$(nproc --all) || mka palladium -j12
 
 tg_sendText "Cool_Build zip"
 cd /tmp/rom
-rclone copy out/target/product/lavender/ hk:rom/ --include "*.zip"
+rclone copy out/target/product/lavender/ hk:rom/ --include "PalladiumOS*"
 up out/target/product/lavender/*.zip
 tg_sendFile "Cool_download.txt"
 #tg_sendFile "out/target/product/lavender/*.zip"
