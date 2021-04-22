@@ -96,7 +96,7 @@ export SELINUX_IGNORE_NEVERALLOWS=true
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
-ccache -M 6G
+ccache -M 12G
 ccache -o compression=true
 ccache -z
 lunch palladium_lavender-userdebug
@@ -115,7 +115,7 @@ mka palladium -j$(nproc --all) || mka palladium -j12
 
 tg_sendText "Cool_Build zip"
 cd /tmp/rom
-rclone copy out/target/product/lavender/*.zip hk:rom/
+rclone copy out/target/product/lavender/ hk:rom/ --include "*.zip"
 up out/target/product/lavender/*.zip
 tg_sendFile "Cool_download.txt"
 #tg_sendFile "out/target/product/lavender/*.zip"
